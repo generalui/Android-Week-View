@@ -1,6 +1,8 @@
 Android Week View
 =================
 
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/Android-Week-View/Lobby)
+
 **Android Week View** is an android library to display calendars (week view or day view) within the app. It supports custom styling.
 
 ![](images/screen-shot.png)
@@ -81,7 +83,7 @@ Usage
 5. Provide the events for the `WeekView` in `WeekView.MonthChangeListener.onMonthChange()` callback. Please remember that the calendar pre-loads events of three consecutive months to enable lag-free scrolling.
 
     ```java
-    WeekView.MonthChangeListener mMonthChangeListener = new WeekView.MonthChangeListener() {
+    MonthLoader.MonthChangeListener mMonthChangeListener = new MonthLoader.MonthChangeListener() {
         @Override
         public List<WeekViewEvent> onMonthChange(int newYear, int newMonth) {
             // Populate the week view with some events.
@@ -96,6 +98,7 @@ Customization
 
 You can customize the look of the `WeekView` in xml. Use the following attributes in xml. All these attributes also have getters and setters to enable you to change the style dynamically.
 
+- `allDayEventHeight`
 - `columnGap`
 - `dayBackgroundColor`
 - `dayNameLength`
@@ -126,6 +129,7 @@ You can customize the look of the `WeekView` in xml. Use the following attribute
 - `showNowLine`
 - `nowLineColor`
 - `nowLineThickness`
+- `scrollDuration`
 
 Interfaces
 ----------
