@@ -1,5 +1,7 @@
 package com.alamkanak.weekview;
 
+import android.graphics.Color;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -18,6 +20,7 @@ public class WeekViewEvent {
     private String mLocation;
     private int mColor;
     private boolean mAllDay;
+    private int mTextColor = Color.BLACK;
 
     public WeekViewEvent(){
 
@@ -142,6 +145,14 @@ public class WeekViewEvent {
 
     public boolean isAllDay() {
         return mAllDay;
+    }
+
+    public void setTextColor(int color) {
+        this.mTextColor = color;
+    }
+
+    public int getTextColor() {
+        return mTextColor;
     }
 
     public void setAllDay(boolean allDay) {
