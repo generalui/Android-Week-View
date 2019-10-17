@@ -21,6 +21,7 @@ public class WeekViewEvent {
     private int mColor;
     private boolean mAllDay;
     private int mTextColor = Color.BLACK;
+    private int mBorderColor = Color.TRANSPARENT;
 
     public WeekViewEvent(){
 
@@ -102,6 +103,13 @@ public class WeekViewEvent {
         this(id, name, null, startTime, endTime);
     }
 
+    public void setBorderColor(int color) {
+        mBorderColor = color;
+    }
+
+    public int getBorderColor() {
+        return mBorderColor;
+    }
 
     public Calendar getStartTime() {
         return mStartTime;
