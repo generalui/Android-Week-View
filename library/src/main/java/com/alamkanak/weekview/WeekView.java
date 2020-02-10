@@ -1887,10 +1887,12 @@ public class WeekView extends View {
         if (mScroller.isFinished()) {
             if (mCurrentFlingDirection != Direction.NONE) {
                 // Snap to day after fling is finished.
+                mScrollListener.onScrollFinish(mLastVisibleDay, mCurrentFlingDirection.name());
                 goToNearestOrigin();
             }
         } else {
             if (mCurrentFlingDirection != Direction.NONE && forceFinishScroll()) {
+                mScrollListener.onScrollFinish(mLastVisibleDay, mCurrentFlingDirection.name());
                 goToNearestOrigin();
             } else if (mScroller.computeScrollOffset()) {
                 mCurrentOrigin.y = mScroller.getCurrY();
@@ -2052,5 +2054,6 @@ public class WeekView extends View {
          * @param oldFirstVisibleDay The old first visible day (is null on the first call).
          */
         void onFirstVisibleDayChanged(Calendar newFirstVisibleDay, Calendar oldFirstVisibleDay);
+        void onScrollFinish(Calendar mLastVisibleDay, String currentFlingDirection);
     }
 }
