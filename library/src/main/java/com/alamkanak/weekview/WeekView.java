@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.Rect;
@@ -807,6 +808,15 @@ public class WeekView extends View {
                         mEventRects.get(i).rectF = new RectF(left, top, right, bottom);
                         mEventBackgroundPaint.setColor(mEventRects.get(i).event.getColor() == 0 ? mDefaultEventColor : mEventRects.get(i).event.getColor());
                         canvas.drawRoundRect(mEventRects.get(i).rectF, mEventCornerRadius, mEventCornerRadius, mEventBackgroundPaint);
+
+                        WeekViewEvent weekViewEvent = mEventRects.get(i).event;
+                        Paint borderPaint = new Paint();
+                        borderPaint.setColor(weekViewEvent.getBorderColor());
+                        borderPaint.setStyle(Paint.Style.STROKE);
+                        borderPaint.setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
+                        borderPaint.setStrokeWidth(3);
+                        canvas.drawRoundRect(mEventRects.get(i).rectF, mEventCornerRadius, mEventCornerRadius, borderPaint);
+
                         drawEventTitle(mEventRects.get(i).event, mEventRects.get(i).rectF, canvas, top, left);
                     }
                     else
@@ -889,6 +899,9 @@ public class WeekView extends View {
         int availableHeight = (int) (rect.bottom - originalTop - mEventPadding * 2);
         int availableWidth = (int) (rect.right - originalLeft - mEventPadding * 2);
 
+        int savedColor = mEventTextPaint.getColor();
+        mEventTextPaint.setColor(event.getTextColor());
+        
         // Get text dimensions.
         StaticLayout textLayout = new StaticLayout(bob, mEventTextPaint, availableWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
 
@@ -913,6 +926,7 @@ public class WeekView extends View {
             textLayout.draw(canvas);
             canvas.restore();
         }
+        mEventTextPaint.setColor(savedColor);
     }
 
 
@@ -1873,10 +1887,12 @@ public class WeekView extends View {
         if (mScroller.isFinished()) {
             if (mCurrentFlingDirection != Direction.NONE) {
                 // Snap to day after fling is finished.
+                mScrollListener.onScrollFinish(mLastVisibleDay, mCurrentFlingDirection.name());
                 goToNearestOrigin();
             }
         } else {
             if (mCurrentFlingDirection != Direction.NONE && forceFinishScroll()) {
+                mScrollListener.onScrollFinish(mLastVisibleDay, mCurrentFlingDirection.name());
                 goToNearestOrigin();
             } else if (mScroller.computeScrollOffset()) {
                 mCurrentOrigin.y = mScroller.getCurrY();
@@ -2038,5 +2054,6 @@ public class WeekView extends View {
          * @param oldFirstVisibleDay The old first visible day (is null on the first call).
          */
         void onFirstVisibleDayChanged(Calendar newFirstVisibleDay, Calendar oldFirstVisibleDay);
+        void onScrollFinish(Calendar mLastVisibleDay, String currentFlingDirection);
     }
 }

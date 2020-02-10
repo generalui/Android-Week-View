@@ -3,6 +3,7 @@ package com.alamkanak.weekview.sample;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,6 +39,18 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
 
         // Get a reference for the week view in the layout.
         mWeekView = (WeekView) findViewById(R.id.weekView);
+
+        mWeekView.setScrollListener(new WeekView.ScrollListener() {
+            @Override
+            public void onFirstVisibleDayChanged(Calendar newFirstVisibleDay, Calendar oldFirstVisibleDay) {
+
+            }
+
+            @Override
+            public void onScrollFinish(Calendar lastVisibleDay, String currentFlingDirection) {
+                Log.d(BaseActivity.class.getSimpleName(), "onScrollFinish lastVisibleDay: " +lastVisibleDay.getTime() + " currentFlingDirection: "+currentFlingDirection);
+            }
+        });
 
         // Show a toast message about the touched event.
         mWeekView.setOnEventClickListener(this);
