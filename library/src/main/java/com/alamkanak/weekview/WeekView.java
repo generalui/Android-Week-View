@@ -1841,6 +1841,9 @@ public class WeekView extends View {
         // Check after call of mGestureDetector, so mCurrentFlingDirection and mCurrentScrollDirection are set.
         if (event.getAction() == MotionEvent.ACTION_UP && !mIsZooming && mCurrentFlingDirection == Direction.NONE) {
             if (mCurrentScrollDirection == Direction.RIGHT || mCurrentScrollDirection == Direction.LEFT) {
+                if (mLastVisibleDay != null) {
+                    mScrollListener.onScrollFinish(mLastVisibleDay, mCurrentFlingDirection.name());
+                }
                 goToNearestOrigin();
             }
             mCurrentScrollDirection = Direction.NONE;

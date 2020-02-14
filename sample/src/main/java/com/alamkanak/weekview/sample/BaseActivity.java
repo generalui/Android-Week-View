@@ -52,6 +52,18 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
         // Set long press listener for empty view
         mWeekView.setEmptyViewLongPressListener(this);
 
+        mWeekView.setScrollListener(new WeekView.ScrollListener() {
+            @Override
+            public void onFirstVisibleDayChanged(Calendar newFirstVisibleDay, Calendar oldFirstVisibleDay) {
+
+            }
+
+            @Override
+            public void onScrollFinish(Calendar mLastVisibleDay, String currentFlingDirection) {
+
+            }
+        });
+
         // Set up a date time interpreter to interpret how the date and time will be formatted in
         // the week view. This is optional.
         setupDateTimeInterpreter(false);
