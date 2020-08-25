@@ -1765,14 +1765,14 @@ public class WeekView extends View {
         return mHorizontalFlingEnabled;
     }
 
-    /**
-     * Set whether the week view should fling horizontally.
-     *
-     * @return True if it should have horizontal fling enabled.
-     */
-    public void setHorizontalFlingEnabled(boolean enabled) {
-        mHorizontalFlingEnabled = enabled;
-    }
+//    /**
+//     * Set whether the week view should fling horizontally.
+//     *
+//     * @return True if it should have horizontal fling enabled.
+//     */
+//    public void setHorizontalFlingEnabled(boolean enabled) {
+//        mHorizontalFlingEnabled = enabled;
+//    }
 
     /**
      * Get whether the week view should fling vertically.
@@ -1783,14 +1783,14 @@ public class WeekView extends View {
         return mVerticalFlingEnabled;
     }
 
-    /**
-     * Set whether the week view should fling vertically.
-     *
-     * @return True if it should have vertical fling enabled.
-     */
-    public void setVerticalFlingEnabled(boolean enabled) {
-        mVerticalFlingEnabled = enabled;
-    }
+//    /**
+//     * Set whether the week view should fling vertically.
+//     *
+//     * @return True if it should have vertical fling enabled.
+//     */
+//    public void setVerticalFlingEnabled(boolean enabled) {
+//        mVerticalFlingEnabled = enabled;
+//    }
 
     /**
      * Get the height of AllDay-events.
@@ -2033,14 +2033,14 @@ public class WeekView extends View {
     //
     /////////////////////////////////////////////////////////////////
 
-    public interface HeaderViewClickListener {
-        /**
-         * Triggered when the users clicks on a HeaderView of the calendar.
-         *
-         * @param time: {@link Calendar} object set with the date and time of the clicked position on the view.
-         */
-        void onHeaderViewClick(Calendar time);
-    }
+//    public interface HeaderViewClickListener {
+//        /**
+//         * Triggered when the users clicks on a HeaderView of the calendar.
+//         *
+//         * @param time: {@link Calendar} object set with the date and time of the clicked position on the view.
+//         */
+//        void onHeaderViewClick(Calendar time);
+//    }
 
     public interface EventClickListener {
         /**
